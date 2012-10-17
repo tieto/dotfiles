@@ -1,0 +1,8 @@
+{
+	"installed_packages":
+	[
+		"Package Control",
+		"RSpec",
+		"SublimeLinter"
+	]
+}

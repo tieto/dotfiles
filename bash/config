@@ -1,0 +1,54 @@
+#!/usr/bin/bash
+
+if [ -f ~/.bash/functions/* ]; then
+  for file in ~/.bash/functions/*; do
+    source $file
+  done
+fi
+
+source ~/.bash/aliases
+
+source ~/.bash/completions/git
+complete -o default -o nospace -F _git_checkout gco
+complete -o default -o nospace -F _git_branch gb
+complete -o default -o nospace -F _git_commit gc
+complete -o default -o nospace -F _git_diff gd
+complete -o default -o nospace -F _git_diff gdc
+complete -o default -o nospace -F _git_diff gdcs
+source ~/.bash/completions/subversion
+source ~/.bash/completions/mategem
+source ~/.bash/completions/bundler
+complete -C ~/.bash/completions/rake -o default rake
+complete -C ~/.bash/completions/project -o default c
+complete -C ~/.bash/completions/project -o default cm
+complete -C ~/.bash/completions/capistrano -o default cap
+
+# prompt: [ root ~ master +? ] % cmd
+_user_root() { [ $USER == "root" ] && printf 'root '; }
+_rvm_prompt() { local s=$(rvm-prompt v g); printf "${s:+ ${s}}"; }
+export PS1="\[\e[0;35m\]\u\[\e[33m\]@\[\e[36m\]\h \$(_user_root)\[\e[33m\]\w\e[31m\]\$(__git_ps1)\[\e[36m\]\$(_rvm_prompt)\n\[\e[33m\]\[\e[32;1m\]$\[\e[0m\] "
+
+export PATH=$HOME/bin:$HOME/.gem/ruby/1.8/bin:/opt/local/bin:/opt/local/sbin:/sw/bin:$PATH
+export PATH=$PATH:/usr/local/mysql/bin/
+export EDITOR="subl -n -w"
+export SVN_EDITOR=$EDITOR
+
+### Bash http://blog.macromates.com/2008/working-with-history-in-bash/
+export HISTCONTROL=erasedups
+export HISTSIZE=10000
+shopt -s histappend
+
+### COLORS
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+### Oracle
+export ORACLE_IC_HOME=$HOME/Library/Oracle/instantclient
+export DYLD_LIBRARY_PATH=$ORACLE_IC_HOME
+export TNS_ADMIN=$DYLD_LIBRARY_PATH
+export PATH=$PATH:$DYLD_LIBRARY_PATH
+export NLS_LANG=AMERICAN_AMERICA.UTF8
+export SQLPATH=$ORACLE_IC_HOME
+
+### MySql
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH

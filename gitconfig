@@ -1,0 +1,19 @@
+[user]
+  name = <NAME LASTNAME>
+  email = <NAME.LASTNAME>@tieto.com
+[alias]
+  co = checkout
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[core]
+  excludesfile = ~/.gitignore
+  editor = subl -n -w
+  autocrlf = input
+[apply]
+  whitespace = nowarn
+[format]
+  pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cr)%Creset
+[github]
+  user = duksis

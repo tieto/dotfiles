@@ -1,0 +1,30 @@
+# changing directory to code project
+function c { cd ~/code/$1; }
+
+# misc
+alias reload='. ~/.bash_profile'
+alias quit='exit'
+alias ..='cd ..'
+
+# kill
+alias k='kill'
+alias k9='kill -9'
+function ka { kill $(ps xc | grep -wi "$*" | awk '{print $1}'); }
+function ka9 { kill -9 $(ps xc | grep -wi "$*" | awk '{print $1}'); }
+
+# textmate
+function m { mate ${*:-.}; }
+
+# ls
+alias l='ls -1'
+alias ll='ls -lh'
+alias la='ls -lah'
+alias lh='ls -la | grep ":[0-9]* \."' # show only hidden files
+
+# git
+alias g='git'
+alias gpll='git pull'
+alias gpsh='git push'
+
+# guard
+alias guard='bundle exec guard'
