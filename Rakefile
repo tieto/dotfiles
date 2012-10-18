@@ -29,7 +29,7 @@ task :install do
     end
   end
   system 'git config --edit --global'
-  system 'source ~/.bashrc'
+  system 'bash ~/.bashrc'
 end
 
 task :default => :install
