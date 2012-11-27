@@ -1,0 +1,16 @@
+terp_svn_add ()
+{
+  if [[ "$1" == *\.sql || "$1" == *\.plb || "$1" == *\.pls ]]
+  then
+    echo "Adding keywords on top of SQL file"
+    cp $1 temporary_file_for_svn_keywords.tmp
+    echo '/*$LastChangedRevision$ $LastChangedDate$ $LastChangedBy$ */' > $1
+    cat temporary_file_for_svn_keywords.tmp >> $1
+    rm temporary_file_for_svn_keywords.tmp
+  fi
+
+  svn add $1
+  svn propset svn:keywords "LastChangedRevision" $1
+  svn propset svn:keywords "LastChangedDate" $1
+  svn propset svn:keywords "LastChangedBy" $1
+}
